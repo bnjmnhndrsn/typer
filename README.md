@@ -1,14 +1,14 @@
 typer
 =====
 
-a bare-bones tool for practicing typing with code.
+A bare-bones tool for practicing typing with code.
 
-paste the code into the box. click submit. you're practicing!
+Paste the code into the box. Click submit. You're practicing!
 
-typer has been designed to the minimum level to allow it be functional. any additional contributions are more than welcome!
+Typer has been designed to the minimum level to allow it be functional. Any additional contributions are more than welcome!
 
 =====================================================================
-typer consists of 5 modules, which expose the following public methods:
+Typer consists of 5 modules, which expose the following public methods:
 
 typer: the shell, runs upon document load
 -init: runs init method of other modules
