@@ -5,7 +5,7 @@ A bare-bones tool for practicing typing with code.
 
 Paste the code into the box. Click submit. You're practicing!
 
-Typer has been designed to the minimum level to allow it be functional. Any additional contributions are more than welcome!
+Typer has been designed to the minimum level to allow it be functional, so there's plenty of room for improvement. Any additional contributions are more than welcome!
 
 =====================================================================
 Typer consists of 5 modules, which expose the following public methods:
