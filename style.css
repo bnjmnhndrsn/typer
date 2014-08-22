@@ -1,0 +1,45 @@
+.typer-current{
+	background-color:#E0E0E0;
+}
+
+.typer-correct{
+	background-color:green;
+}
+
+.typer-incorrect{
+	background-color:red;
+}
+
+#typer{
+	width: 800px;
+	margin: 0 auto;
+}
+
+#typer-input{
+	text-align:center;
+}
+
+
+	#typer-input textarea{
+		width:100%;
+		height:300px;
+	}
+
+#typer-pad{
+
+}
+	#typer-pad-text pre{
+		overflow-wrap: break-word;
+	}
+	#typer-pad-buttons{
+		text-align:center;
+	}
+
+#typer-stats{
+	text-align:center;
+}
+	#typer-stats div{
+		padding:10px;
+		display: inline-block;
+		font-size: 150%;
+	}
