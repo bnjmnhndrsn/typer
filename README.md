@@ -5,7 +5,9 @@ a bare-bones tool for practicing typing with code.
 
 paste the code into the box. click submit. you're practicing!
 
+typer has been designed to the minimum level to allow it be functional. any additional contributions are more than welcome!
 
+=====================================================================
 typer consists of 5 modules, which expose the following public methods:
 
 typer: the shell, runs upon document load
