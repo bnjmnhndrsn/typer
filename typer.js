@@ -66,7 +66,9 @@ typer.pad = (function(){
 		load,
 		start,
 		update,
-		end
+		end,
+		getWPM,
+		getAcc
 	;
 	
 	init = function( $container ){
@@ -134,17 +136,23 @@ typer.pad = (function(){
 			//correct
 			if ($cur().text().valueOf() === input){
 				$cur().addClass("typer-correct");
-				stateMap.accuracy.push(true);
+				stateMap.accuracy.push({
+					key: input,
+					correct: true
+				});
 			}
 			//incorrect key press
 			else {
 				$cur().addClass("typer-incorrect");
-				stateMap.accuracy.push(false);
+				stateMap.accuracy.push({
+					key: input,
+					correct: false
+				});
 			}
 					
 			stateMap.curIndex = Math.min(stateMap.curIndex + 1, stateMap.textLength);
 			
-			if (stateMap.curIndex == stateMap.textLength && stateMap.accuracy[stateMap.accuracy.length - 1]){
+			if (stateMap.curIndex == stateMap.textLength && stateMap.accuracy[stateMap.accuracy.length - 1].correct){
 				end();
 			}
 		}
@@ -159,15 +167,19 @@ typer.pad = (function(){
 		typer.listeners.off();
 		$buttons.hide();
 	
-		var acc = Math.round( (stateMap.accuracy.filter(function(a){ return a }).length
-		/ stateMap.accuracy.length) * 100 ) + "%",
-		wpm = Math.round( (stateMap.curIndex / 5) / ( ((new Date()) - stateMap.startTime) / (1000 * 60) ) )
-	
-	
 		typer.stats.update({
-			"Accuracy" : acc,
-			"WPM" : wpm
+			"Accuracy" : getAcc(),
+			"WPM" : getWPM()
 		});
+	};
+	
+	getWPM = function(){ 
+		return Math.round( (stateMap.curIndex / 5) / ( ((new Date()) - stateMap.startTime) / (1000 * 60) ) );
+	};
+	
+	getAcc = function(){
+		return Math.round( (stateMap.accuracy.filter(function(a){ return a.correct }).length
+		/ stateMap.accuracy.length) * 100 ) + "%";
 	};
 	
 	return {
