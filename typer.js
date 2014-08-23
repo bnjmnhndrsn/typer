@@ -128,7 +128,6 @@ typer.pad = (function(){
 		if(input === "backspace"){
 			console.log(stateMap.curIndex);
 			$cur().removeClass("typer-correct typer-incorrect typer-current");
-			stateMap.accuracy.pop();
 			--stateMap.curIndex;
 		}
 		else if (stateMap.curIndex < stateMap.textLength)  {
