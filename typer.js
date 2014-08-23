@@ -183,7 +183,12 @@ typer.listeners = (function(){
 	var
 		$target,
 		$buttons,
-		specialKeys,
+		//non-keypress keys with values or keys which require preventing bubbling
+		specialKeys = {
+			8: "backspace",
+			9: "\t",
+			32: " "
+		},
 		buttonBlur,
 		init,
 		on,
@@ -200,24 +205,15 @@ typer.listeners = (function(){
 	
 	//turns on keyboard listeners
 	on = function(){
-		specialKeys = [8, 9, 32];
 		
 		$target.keydown(function(e){
 			$buttons.blur();
-			//detect backspace
-			if (e.keyCode == 8){
-				typer.pad.update("backspace");	
+			
+			if (e.keyCode in specialKeys){
+				typer.pad.update(specialKeys[e.keyCode]);
 				return false;
 			}
-			if (e.keyCode == 9){
-				typer.pad.update("\t");
-				return false;
-			}
-			if (e.keyCode == 32){
-				console.log("space");
-				typer.pad.update(" ");
-				return false;
-			}
+			
 			
 		});
 		
@@ -226,13 +222,14 @@ typer.listeners = (function(){
 			var key = e.keyCode || e.charCode,
 			c = String.fromCharCode(key); 
 			
+			if (key in specialKeys){
+				return false;	
+			}
+			
 			if (c.length > 0){
 				typer.pad.update(c);
 			}
 			
-			return specialKeys.some(function(element){
-				key == element;
-			});
 		});
 			
 	};
