@@ -38,6 +38,7 @@ typer.input = (function(){
 		
 		$textarea.focus(function(){
 			$textarea.height(300);
+			typer.pad.end();
 		});
 	};
 	
@@ -157,7 +158,7 @@ typer.pad = (function(){
 	end = function(){
 		stateMap.running = false;
 		typer.listeners.off();
-		console.log("It's over!");
+		$buttons.hide();
 	
 		var acc = Math.round( (stateMap.accuracy.filter(function(a){ return a }).length
 		/ stateMap.accuracy.length) * 100 ) + "%",
@@ -173,7 +174,9 @@ typer.pad = (function(){
 	return {
 		init: init,
 		load: load,
-		update: update
+		start: start,
+		update: update,
+		end: end
 	}
 
 })();
