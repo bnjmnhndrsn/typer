@@ -183,6 +183,7 @@ typer.listeners = (function(){
 	var
 		$target,
 		$buttons,
+		specialKeys,
 		buttonBlur,
 		init,
 		on,
@@ -199,6 +200,8 @@ typer.listeners = (function(){
 	
 	//turns on keyboard listeners
 	on = function(){
+		specialKeys = [8, 9, 32];
+		
 		$target.keydown(function(e){
 			$buttons.blur();
 			//detect backspace
@@ -211,6 +214,7 @@ typer.listeners = (function(){
 				return false;
 			}
 			if (e.keyCode == 32){
+				console.log("space");
 				typer.pad.update(" ");
 				return false;
 			}
@@ -225,6 +229,10 @@ typer.listeners = (function(){
 			if (c.length > 0){
 				typer.pad.update(c);
 			}
+			
+			return specialKeys.some(function(element){
+				key == element;
+			});
 		});
 			
 	};
