@@ -210,6 +210,10 @@ typer.listeners = (function(){
 				typer.pad.update("\t");
 				return false;
 			}
+			if (e.keyCode == 32){
+				typer.pad.update(" ");
+				return false;
+			}
 			
 		});
 		
