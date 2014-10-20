@@ -1,7 +1,7 @@
 typer
 =====
 
-A bare-bones tool for practicing typing with code.
+A bare-bones tool for practising typing code.
 
 Paste the code into the box. Click submit. You're practicing!
 
