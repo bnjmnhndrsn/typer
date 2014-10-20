@@ -5,7 +5,7 @@ A bare-bones tool for practicing typing with code.
 
 Paste the code into the box. Click submit. You're practicing!
 
-[Working demo](https://rawgit.com/bnjmnhndrsn/typer/master/index.html) 
+[Here's the working version!](https://rawgit.com/bnjmnhndrsn/typer/master/index.html) 
 
 Typer has been designed to the minimum level to allow it be functional, so there's plenty of room for improvement. Any additional contributions are more than welcome!
 
