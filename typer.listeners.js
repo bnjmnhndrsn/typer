@@ -1,6 +1,7 @@
 typer.listeners = (function(){
 	var
 		$target,
+		$typer,
 		$buttons,
 		//non-keypress keys with values or keys which require preventing bubbling
 		specialKeys = {
@@ -14,8 +15,9 @@ typer.listeners = (function(){
 		off
 	;
 	
-	init = function($container){
-		$target = $container
+	init = function($container, $typer){
+		$target = $container;
+		$typer = $typer
 		$buttons = $container.find("button");
 	};
 
@@ -26,10 +28,9 @@ typer.listeners = (function(){
 			$buttons.blur();
 			
 			if (e.keyCode in specialKeys){
-				typer.pad.update(specialKeys[e.keyCode]);
+				$typer.trigger( "typingUpdate", specialKeys[e.keyCode] );
 				return false;
 			}
-			
 			
 		});
 		
@@ -43,7 +44,7 @@ typer.listeners = (function(){
 			}
 			
 			if (c.length > 0){
-				typer.pad.update(c);
+				$typer.trigger( "typingUpdate", c );
 			}
 			
 		});

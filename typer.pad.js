@@ -31,7 +31,7 @@ typer.pad = (function(){
 	
 	//loads the text to be typed into the DOM and starts start function
 	load = function(input){
-		typer.stats.hide();
+	
 		$buttons.show();
 		
 		var sArray = input.split("");
@@ -49,14 +49,16 @@ typer.pad = (function(){
 			
 		stateMap.textLength = input.length;
 			
-		$end.click(function(){ stateMap.running) ? end() : null ; });
+		$end.click(function(){ 
+			(stateMap.running) ? end() : null ; 
+		});
 		
-		start();
+		$pad.trigger("typingStart");
+		
 	};
 	
 	//turns on keyboard listeners and refreshes start 
 	start = function(){
-		typer.listeners.on();
 		stateMap.running = true;
 		stateMap.curIndex = 0;
 		stateMap.startTime = new Date();
@@ -72,12 +74,11 @@ typer.pad = (function(){
 		};
 		
 		//backspace
-		if(input === "backspace"){
+		if (input === "backspace") {
 			console.log(stateMap.curIndex);
 			$cur().removeClass("typer-correct typer-incorrect typer-current");
 			--stateMap.curIndex;
-		}
-		else if (stateMap.curIndex < stateMap.textLength)  {
+		} else if (stateMap.curIndex < stateMap.textLength) {
 			//correct
 			if ($cur().text().valueOf() === input){
 				$cur().addClass("typer-correct");
@@ -85,9 +86,8 @@ typer.pad = (function(){
 					key: input,
 					correct: true
 				});
-			}
+			} else {
 			//incorrect key press
-			else {
 				$cur().addClass("typer-incorrect");
 				stateMap.accuracy.push({
 					key: input,
@@ -109,13 +109,15 @@ typer.pad = (function(){
 	//ends counter, turns off listeners and reveals stats
 	end = function(){
 		stateMap.running = false;
-		typer.listeners.off();
 		$buttons.hide();
-	
-		typer.stats.update({
+		
+		var stats = {
 			"Accuracy" : getAcc(),
 			"WPM" : getWPM()
-		});
+		};
+		
+		$pad.trigger("typingEnd", [stats]);
+
 	};
 	
 	getWPM = function(){ 
