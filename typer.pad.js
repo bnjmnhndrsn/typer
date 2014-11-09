@@ -49,12 +49,7 @@ typer.pad = (function(){
 			
 		stateMap.textLength = input.length;
 			
-		$end.click(function(){
-			if (stateMap.running){
-				end();
-			}
-			
-		});
+		$end.click(function(){ stateMap.running) ? end() : null ; });
 		
 		start();
 	};
@@ -73,7 +68,7 @@ typer.pad = (function(){
 	
 	//helper method to get current letter	
 		var $cur = function(){
-			return $( $pre[0].children[stateMap.curIndex] )
+			return $( $pre[0].children[stateMap.curIndex] );
 		};
 		
 		//backspace
@@ -128,8 +123,7 @@ typer.pad = (function(){
 	};
 	
 	getAcc = function(){
-		return Math.round( (stateMap.accuracy.filter(function(a){ return a.correct }).length
-		/ stateMap.accuracy.length) * 100 ) + "%";
+		return Math.round( (stateMap.accuracy.filter(function(a){ return a.correct }).length / stateMap.accuracy.length) * 100 ) + "%";
 	};
 	
 	return {
@@ -138,6 +132,6 @@ typer.pad = (function(){
 		start: start,
 		update: update,
 		end: end
-	}
+	};
 
 })();

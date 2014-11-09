@@ -18,10 +18,7 @@ typer.listeners = (function(){
 		$target = $container
 		$buttons = $container.find("button");
 	};
-	
-	
-		
-	
+
 	//turns on keyboard listeners
 	on = function(){
 		
