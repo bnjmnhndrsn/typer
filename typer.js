@@ -19,7 +19,8 @@ var typer = (function(){
 				typer.pad.end();
 			})
 			
-			$typer.on("inputSumbit", function(event, text){
+			$typer.on("inputSubmit", function(event, text){
+				console.log(text);
 				typer.pad.load(text);
 			});
 			

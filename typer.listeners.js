@@ -15,9 +15,9 @@ typer.listeners = (function(){
 		off
 	;
 	
-	init = function($container, $typer){
+	init = function($container, _$typer){
 		$target = $container;
-		$typer = $typer
+		$typer = _$typer;
 		$buttons = $container.find("button");
 	};
 
